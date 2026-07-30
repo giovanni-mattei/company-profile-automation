@@ -18,3 +18,6 @@ dependencies = [
     "uvicorn>=0.52.0",
     "yfinance>=1.5.2",
 ]
+
+[tool.fastapi]
+entrypoint = "build.api:app"
