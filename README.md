@@ -28,7 +28,7 @@ The output is a **structured PowerPoint slide deck** containing:
 
 
 ## Project Structure
-
+"""
 company-profile-automation/
 │
 ├── build/                  # Core Python modules
@@ -47,7 +47,7 @@ company-profile-automation/
 │
 └── notebooks/              # Development and testing
     └── dev.ipynb           # Jupyter Notebook for debugging
-
+"""
 
 ---
 ---
