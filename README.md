@@ -11,7 +11,6 @@ The output is a **structured PowerPoint slide deck** containing:
 - Key financial highlights.
 - Recent news summaries.
 
----
 
 ---
 
@@ -24,11 +23,10 @@ The output is a **structured PowerPoint slide deck** containing:
 
 
 ---
----
 
 
 ## Project Structure
-"""
+```
 company-profile-automation/
 │
 ├── build/                  # Core Python modules
@@ -47,9 +45,9 @@ company-profile-automation/
 │
 └── notebooks/              # Development and testing
     └── dev.ipynb           # Jupyter Notebook for debugging
-"""
+```
 
----
+
 ---
 
 
@@ -65,4 +63,3 @@ company-profile-automation/
 | `pptx_writer.py`       | Populates the PowerPoint template (`deck.pptx`) with analyzed data.                                  |
 | `mistral_handler.py`   | Handles Mistral API calls for AI-generated text.                                                     |
 | `utils.py`             | Utility functions.                                                                                   |
-
