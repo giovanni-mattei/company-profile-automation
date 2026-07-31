@@ -6,14 +6,14 @@ from pathlib import Path
 API_BASE_URL = os.getenv("API_BASE_URL", "http://localhost:8000")
 
 st.set_page_config(layout="centered")
-st.title("Automated company profile deck")
+st.title("Company profile automation")
 st.write("Automated equity research tool generating PowerPoint profiles from stock tickers using Yahoo Finance data and Mistral AI")
 
 st.caption("""
-Technical workflow: fetches financial data from Yahoo Finance (prices, financials, cash flows), calls Mistral API for business summaries and investment analysis, calculates key metrics (revenue CAGR, margins, ROIC, debt ratios), and compiles everything into a standardized PowerPoint deck. Modular architecture with separate data, analysis, and presentation layers.
+Technical workflow: the script fetches financial data from Yahoo Finance (close prices, financials, news), calculates key metrics, queries Mistral API for business summaries and analyses, and compiles everything into a standardized PowerPoint deck. The source code has modular architecture with separate data, analysis, and presentation layers.
 """)
 
-ticker = st.text_input("Stock ticker", placeholder="CMG, TSLA, TREX")
+ticker = st.text_input("Share trading ticker", placeholder="CMG, TSLA, TREX")
 
 if st.button("Generate company profile deck"):
     if ticker:
@@ -37,4 +37,4 @@ if st.button("Generate company profile deck"):
     else:
         st.warning("Please enter a ticker")
 
-st.caption("Created by [Giovanni Mattei](https://giovanni.mattei.github.io)")
+st.caption("Created by [Giovanni Mattei](https://giovanni-mattei.github.io)")
