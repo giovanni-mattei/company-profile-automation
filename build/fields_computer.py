@@ -15,14 +15,14 @@ def get_company_info(company_data):
         return {"error": "Company info not available."}
 
     return {
-        "company_name":     info.get("displayName", "N/A"),
+        "company_name":     info.get("shortName", "N/A"),
         "company_ticker":   info.get("symbol", "N/A"),
         "company_sector":   info.get("sector", "N/A"),
         "company_industry": info.get("industry", "N/A"),
         "market_cap":       format_number(info.get("marketCap", 0)),
         "share_price":      format_currency(info.get("currentPrice", 0)),
         "share_earnings":   format_currency(info.get("trailingEps", 0)),
-        "analyst_rating":   info.get("averageAnalystRating", "N/A"),
+        "analyst_rating":   info.get("recommendationKey", "N/A"),
         "beta":             info.get("beta", "N/A"),
         "ltm_revenue":      format_number(info.get("totalRevenue", "N/A")),
         "revenue_growth":   format_percentage(info.get("revenueGrowth", 0)),
@@ -76,15 +76,16 @@ def get_price_chart(company_data):
     p_analyst = info.get("targetMeanPrice", 0)
 
     plt.figure(figsize=(11.84, 6.40))
-    sns.lineplot(data["Close"], linewidth=3, color="#44546A")
-    plt.rcParams['font.family'] = ['Arial', 'sans-serif']
+    sns.lineplot(data["Close"], linewidth=3, color="#418AB3")
+    plt.rcParams['font.family'] = ['Liberation Sans', 'sans-serif']
     plt.gca().spines['top'].set_visible(False)
     plt.gca().spines['right'].set_visible(False)
-    plt.gca().spines['left'].set_color('#44546A')
-    plt.gca().spines['bottom'].set_color('#44546A')
-    plt.tick_params(axis='both', labelsize=16, colors='#44546A')
+    plt.gca().spines['left'].set_color('#000000')
+    plt.gca().spines['bottom'].set_color('#000000')
+    plt.tick_params(axis='both', labelsize=16, colors='#000000')
     plt.gca().set(xlabel=None, ylabel=None)
     plt.tick_params(axis='both', labelsize=16)
+    plt.gcf().patch.set_alpha(0.0)
 
     plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%b'))
     plt.gca().xaxis.set_major_locator(mdates.MonthLocator())
@@ -93,14 +94,14 @@ def get_price_chart(company_data):
     plt.hlines(y=p_mean,
                xmin=x_min + 0.025 * (x_max - x_min),
                xmax=x_max - 0.025 * (x_max - x_min),
-               color="#ED7D31",
+               color="#F69200",
                linestyle='-',
                linewidth=2,
                label="Mean price")
     plt.hlines(y=p_analyst,
                xmin=x_min + 0.025 * (x_max - x_min),
                xmax=x_max - 0.025 * (x_max - x_min),
-               color="#70AD47",
+               color="#A6B727",
                linestyle='-',
                linewidth=2,
                label="Analyst expectation")
@@ -108,7 +109,7 @@ def get_price_chart(company_data):
     plt.tight_layout()
 
     buffer = BytesIO()
-    plt.savefig(buffer, format='png', dpi=200, bbox_inches='tight')
+    plt.savefig(buffer, format='png', dpi=200, bbox_inches='tight', transparent=True)
     plt.close()
     buffer.seek(0)
     return buffer
