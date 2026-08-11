@@ -15,7 +15,7 @@ def get_company_info(company_data):
         return {"error": "Company info not available."}
 
     return {
-        "company_name":     info.get("shortName", "N/A"),
+        "company_name":     info.get("displayName", info.get("shortName", "N/A")),
         "company_ticker":   info.get("symbol", "N/A"),
         "company_sector":   info.get("sector", "N/A"),
         "company_industry": info.get("industry", "N/A"),
