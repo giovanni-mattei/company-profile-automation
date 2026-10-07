@@ -13,8 +13,8 @@ def get_company_data(symbol: str):
         cashflow = ticker.cashflow if not ticker.cashflow.empty else pd.DataFrame()
         history = ticker.history(period="6mo") if not ticker.history(period="6mo").empty else pd.DataFrame()
 
-        news = ticker.news or yf.Search(symbol, news_count=10).news or []
-        news += [{"title": "No recent news available"}] * (3 - len(news))
+        news = ticker.news or [{"content": {**n, "summary": n.get("summary", "")}} for n in yf.Search(symbol, news_count=10).news]
+        news += [{"content": {"title": "No recent news available", "summary": ""}}] * (3 - len(news))
 
         return {
             "info": ticker.info or {},
